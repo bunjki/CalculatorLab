@@ -356,7 +356,7 @@
             this.button6.TabIndex = 26;
             this.button6.Text = "√";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.btnSquareRoot_Click);
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button8
             // 
@@ -367,7 +367,7 @@
             this.button8.TabIndex = 28;
             this.button8.Text = "1/X";
             this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.btnOneOverX_Click);
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // MainForm
             // 

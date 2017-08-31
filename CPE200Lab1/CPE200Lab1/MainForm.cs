@@ -259,12 +259,12 @@ namespace CPE200Lab1
             isAfterOperater = true;
         }
 
-        private void btnSquareRoot_Click(object sender, EventArgs e)
+        private void button6_Click(object sender, EventArgs e)
         {
 
         }
                 
-        private void btnOneOverX_Click(object sender, EventArgs e)
+        private void button8_Click(object sender, EventArgs e)
         {
 
         }
