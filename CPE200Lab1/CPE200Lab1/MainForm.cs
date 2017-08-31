@@ -19,7 +19,9 @@ namespace CPE200Lab1
         private bool isfirstOperater; // + ต่อๆกันได้
         private string firstOperand;
         private string operate;
-
+        
+        private double memory; //สร้างตัว Memory
+        
         private CalculatorEngine engine; // Connect with class
 
         private void resetAll()
@@ -220,42 +222,49 @@ namespace CPE200Lab1
 
         }
 
-        private void btnMC_Click(object sender, EventArgs e)
+        private void btnMC_Click(object sender, EventArgs e)  // MC
         {
             memory = 0;
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void btnMR_Click(object sender, EventArgs e) // MR
         {
+
+            lblDisplay.Text = memory.ToString();
 
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnMS_Click(object sender, EventArgs e)  // MS
         {
+            memory = Convert.ToDouble(lblDisplay.Text);
+
+            isAfterOperater = true;
 
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btnMPlus_Click(object sender, EventArgs e) // M+
+        {
+            
+            memory += Convert.ToDouble(lblDisplay.Text);
+
+            isAfterOperater = true;
+            
+        }
+
+        private void btnMMinus_Click(object sender, EventArgs e) // M-
+        {
+
+            memory -= Convert.ToDouble(lblDisplay.Text);
+
+            isAfterOperater = true;
+        }
+
+        private void btnSquareRoot_Click(object sender, EventArgs e)
         {
 
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button8_Click(object sender, EventArgs e)
+                
+        private void btnOneOverX_Click(object sender, EventArgs e)
         {
 
         }
