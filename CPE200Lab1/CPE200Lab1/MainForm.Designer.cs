@@ -356,7 +356,7 @@
             this.button6.TabIndex = 26;
             this.button6.Text = "√";
             this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.btnSquareRoot_Click);
+            this.button6.Click += new System.EventHandler(this.btnRoot_Click);
             // 
             // button8
             // 

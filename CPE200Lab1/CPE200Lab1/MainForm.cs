@@ -18,6 +18,7 @@ namespace CPE200Lab1
         private bool isAfterEqual;
         private bool isfirstOperater; // + ต่อๆกันได้
         private string firstOperand;
+        private string secondOperand;
         private string operate;
         
         private double memory; //สร้างตัว Memory
@@ -39,14 +40,14 @@ namespace CPE200Lab1
         {
             InitializeComponent();
 
-            engine = new CalculatorEngine(); // new
+            engine = new CalculatorEngine(); // neww
 
             resetAll();
         }
 
         private void btnNumber_Click(object sender, EventArgs e)
         {
-            if (lblDisplay.Text is "Error")
+            if (lblDisplay.Text is "Error") 
             {
                 return;
             }
@@ -82,24 +83,12 @@ namespace CPE200Lab1
             {
                 return;
             }
+
+            string result = engine.calculate(operate, firstOperand, secondOperand);
+            string temp = operate;
+            
             operate = ((Button)sender).Text;
-            if (isfirstOperater == false)
-            {
-                if (lblDisplay.Text is "Error")
-                {
-                    return;
-                }
-                string secondOperand = lblDisplay.Text;
-                string result = engine.calculate(operate, firstOperand, secondOperand); // calculate with .engine
-                if (result is "E" || result.Length > 8)
-                {
-                    lblDisplay.Text = "Error";
-                }
-                else
-                {
-                    lblDisplay.Text = result;
-                }
-            }
+            
             switch (operate)
             {
                 case "+":
@@ -110,7 +99,9 @@ namespace CPE200Lab1
                     isAfterOperater = true;
                     break;
                 case "%":
-                    // your code here
+                    lblDisplay.Text = (Convert.ToDouble(firstOperand) * Convert.ToDouble(lblDisplay.Text) / 100).ToString();
+                    isAfterOperater = true;
+                    operate = temp;
                     break;
             }
             isAllowBack = false;
@@ -154,7 +145,7 @@ namespace CPE200Lab1
             if (!hasDot)
             {
                 lblDisplay.Text += ".";
-                hasDot = true;
+                hasDot = false;
             }
         }
 
@@ -259,14 +250,18 @@ namespace CPE200Lab1
             isAfterOperater = true;
         }
 
-        private void btnSquareRoot_Click(object sender, EventArgs e)
+        private void btnRoot_Click(object sender, EventArgs e)
         {
-
+            Double Root = (Math.Sqrt(Convert.ToDouble(lblDisplay.Text)));
+            Root = Math.Round(Root, 7);
+            lblDisplay.Text = Root.ToString();
         }
                 
         private void btnOneOverX_Click(object sender, EventArgs e)
         {
-
+            Double OneOverX = (1 / Convert.ToDouble(lblDisplay.Text));
+            OneOverX = Math.Round(OneOverX, 7);
+            lblDisplay.Text = OneOverX.ToString();
         }
     }
 }
