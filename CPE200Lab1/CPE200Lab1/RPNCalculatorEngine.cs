@@ -4,36 +4,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.Collections;
-
 namespace CPE200Lab1
 {
-    class RPNCalculatorEngine : CalculatorEngine
+    public class RPNCalculatorEngine : CalculatorEngine
     {
-        
-        public string Process(string str)
+        public new string Process(string str)
         {
-            string result = string.Empty;
-            Stack<string> RPNstack = new Stack<string>();
-            string[]  parts = str.Split(' ');
-            for (int i = 0; i < parts.Length; i++)
-            {
-                if (isOperator(parts[i]))
-                {
-                    string second = RPNstack.Pop().ToString();
-                    string first = RPNstack.Pop().ToString();
-                    result = calculate(parts[i], first, second);
+            Stack<string> rpnStack = new Stack<string>();
+            List<string> parts = str.Split(' ').ToList<string>();
+            string result;
+            string firstOperand, secondOperand;
 
-                    RPNstack.Push(result);
-                   
-                }
-                if (isNumber(parts[i]))
+            foreach (string token in parts)
+            {
+                if (isNumber(token))
                 {
-                    RPNstack.Push(parts[i]);
+                    rpnStack.Push(token);
+                }
+                else if (isOperator(token))
+                {
+                    //FIXME, what if there is only one left in stack?
+                    secondOperand = rpnStack.Pop();
+                    firstOperand = rpnStack.Pop();
+                    result = calculate(token, firstOperand, secondOperand, 4);
+                    if (result is "E")
+                    {
+                        return result;
+                    }
+                    rpnStack.Push(result);
                 }
             }
-
-            return RPNstack.Pop();
+            //FIXME, what if there is more than one, or zero, items in the stack?
+            result = rpnStack.Pop();
+            return result;
         }
     }
 }
