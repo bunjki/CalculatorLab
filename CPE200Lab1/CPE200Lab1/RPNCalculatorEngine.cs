@@ -32,7 +32,6 @@ namespace CPE200Lab1
                 else if (isOperator(token))
                 {
                     
-                    
                     if (countNum == countOpera+1) return "E";
                     //FIXME, what if there is only one left in stack?
                     countOpera++;
@@ -49,7 +48,8 @@ namespace CPE200Lab1
                 } else if (token != "") return "E";
                                 
             }
-            
+
+            if (countNum != countOpera + 1) return "E"; //Fix ช่องว่างปลาย Opera
             //FIXME, what if there is more than one, or zero, items in the stack?
             result = rpnStack.Pop();
             return result;
