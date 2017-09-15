@@ -17,16 +17,26 @@ namespace CPE200Lab1
             string result;
             string firstOperand, secondOperand;
 
+            int countNum = 0;
+            int countOpera = 0;
+
+            if (str[0] == '+') return "E"; // Opera return E
+            
             foreach (string token in parts)
             {
                 if (isNumber(token))
                 {
                     rpnStack.Push(token);
+                    countNum++;
                 }
                 else if (isOperator(token))
                 {
-                                   
+                    
+                    
+                    if (countNum == countOpera+1) return "E";
                     //FIXME, what if there is only one left in stack?
+                    countOpera++;
+
                     secondOperand = rpnStack.Pop();
                     firstOperand = rpnStack.Pop();
                     result = calculate(token, firstOperand, secondOperand, 4);
@@ -35,9 +45,11 @@ namespace CPE200Lab1
                         return result;
                     }
                     rpnStack.Push(result);
-                }
+
+                } else if (token != "") return "E";
+                                
             }
-            //catch (Exception ) { return "E"; }
+            
             //FIXME, what if there is more than one, or zero, items in the stack?
             result = rpnStack.Pop();
             return result;
