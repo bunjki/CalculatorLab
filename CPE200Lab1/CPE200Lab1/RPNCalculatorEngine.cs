@@ -26,15 +26,16 @@ namespace CPE200Lab1
             {
                 if (isNumber(token))
                 {
-                    rpnStack.Push(token);
                     countNum++;
+                    rpnStack.Push(token);
+                    
                 }
                 else if (isOperator(token))
                 {
-                    
-                    if (countNum == countOpera+1) return "E";
-                    //FIXME, what if there is only one left in stack?
                     countOpera++;
+                    if (!(countNum >= countOpera+1)) return "E";
+                    //FIXME, what if there is only one left in stack?
+                    
 
                     secondOperand = rpnStack.Pop();
                     firstOperand = rpnStack.Pop();
